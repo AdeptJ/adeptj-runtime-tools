@@ -27,7 +27,7 @@
         <version>1.0.12.Final</version>
     </parent>
     <artifactId>adeptj-runtime-tools</artifactId>
-    <version>1.0.2.Final</version>
+    <version>1.0.3.Final</version>
     <packaging>jar</packaging>
     <name>AdeptJ Runtime Tools</name>
     <description>AdeptJ Runtime Tools - Admin Dashboard etc.</description>
@@ -88,5 +88,15 @@
         <connection>scm:git:git@github.com:AdeptJ/adeptj-runtime-tools.git</connection>
         <developerConnection>scm:git:git@github.com:AdeptJ/adeptj-runtime-tools.git</developerConnection>
     </scm>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+    </dependencies>
 
 </project>
