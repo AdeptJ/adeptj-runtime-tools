@@ -47,6 +47,8 @@ public enum LogbackManager {
 
     private static final String SYS_PROP_LOG_IMMEDIATE_FLUSH = "log.immediate.flush";
 
+    public static final String APPENDER_CONSOLE = "CONSOLE";
+
     private final List<Appender<ILoggingEvent>> appenderList;
 
     private volatile LoggerContext loggerContext;
@@ -81,7 +83,7 @@ public enum LogbackManager {
             Logger logger = this.loggerContext.getLogger(loggerName);
             logger.setLevel(Level.toLevel(logbackConfig.getLevel()));
             logger.setAdditive(logbackConfig.isAdditivity());
-            logger.addAppender(logbackConfig.getAppender());
+            logbackConfig.getAppenders().forEach(logger::addAppender);
         });
     }
 
@@ -116,7 +118,6 @@ public enum LogbackManager {
         fileAppender.setName(logbackConfig.getAppenderName());
         fileAppender.setFile(logbackConfig.getLogFile());
         fileAppender.setAppend(true);
-        // First check the system property for immediate log flush, if false then use the immediateFlush parameter.
         fileAppender.setImmediateFlush(Boolean.getBoolean(SYS_PROP_LOG_IMMEDIATE_FLUSH));
         if (!fileAppender.isImmediateFlush()) {
             fileAppender.setImmediateFlush(logbackConfig.isImmediateFlush());
@@ -132,7 +133,7 @@ public enum LogbackManager {
         asyncAppender.setQueueSize(logbackConfig.getAsyncLogQueueSize());
         asyncAppender.setDiscardingThreshold(logbackConfig.getAsyncLogDiscardingThreshold());
         asyncAppender.setContext(this.loggerContext);
-        asyncAppender.addAppender(logbackConfig.getAppender());
+        asyncAppender.addAppender(logbackConfig.getAsyncAppender());
         asyncAppender.start();
     }
 }

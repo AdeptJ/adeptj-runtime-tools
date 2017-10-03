@@ -62,7 +62,9 @@ public class LogbackConfig {
 
     private int asyncLogDiscardingThreshold;
 
-    private Appender<ILoggingEvent> appender;
+    private Appender<ILoggingEvent> asyncAppender;
+
+    private List<Appender<ILoggingEvent>> appenders;
 
     private LogbackConfig() {
     }
@@ -123,8 +125,19 @@ public class LogbackConfig {
         return asyncLogDiscardingThreshold;
     }
 
-    public Appender<ILoggingEvent> getAppender() {
-        return appender;
+    public Appender<ILoggingEvent> getAsyncAppender() {
+        return asyncAppender;
+    }
+
+    public void setetAsyncAppender(Appender<ILoggingEvent> asyncAppender) {
+        this.asyncAppender = asyncAppender;
+    }
+
+    public List<Appender<ILoggingEvent>> getAppenders() {
+        if (this.appenders == null) {
+            this.appenders = new ArrayList<>();
+        }
+        return appenders;
     }
 
     public static Builder builder() {
@@ -164,7 +177,9 @@ public class LogbackConfig {
 
         private int asyncLogDiscardingThreshold;
 
-        private Appender<ILoggingEvent> appender;
+        private Appender<ILoggingEvent> asyncAppender;
+
+        private List<Appender<ILoggingEvent>> appenders;
 
         private Builder() {
         }
@@ -204,7 +219,15 @@ public class LogbackConfig {
             return this;
         }
 
-        public Builder loggers(String... loggers) {
+        public Builder logger(String logger) {
+            if (this.loggerNames == null) {
+                this.loggerNames = new ArrayList<>();
+            }
+            this.loggerNames.add(logger);
+            return this;
+        }
+
+        public Builder loggers(String[] loggers) {
             if (this.loggerNames == null) {
                 this.loggerNames = new ArrayList<>();
             }
@@ -242,8 +265,24 @@ public class LogbackConfig {
             return this;
         }
 
+        public Builder asyncAppender(Appender<ILoggingEvent> asyncAppender) {
+            this.asyncAppender = asyncAppender;
+            return this;
+        }
+
         public Builder appender(Appender<ILoggingEvent> appender) {
-            this.appender = appender;
+            if (this.appenders == null) {
+                this.appenders = new ArrayList<>();
+            }
+            this.appenders.add(appender);
+            return this;
+        }
+
+        public Builder appenders(List<Appender<ILoggingEvent>> appenders) {
+            if (this.appenders == null) {
+                this.appenders = new ArrayList<>();
+            }
+            this.appenders.addAll(appenders);
             return this;
         }
 
@@ -263,7 +302,8 @@ public class LogbackConfig {
             config.asyncAppenderName = this.asyncAppenderName;
             config.asyncLogQueueSize = this.asyncLogQueueSize;
             config.asyncLogDiscardingThreshold = this.asyncLogDiscardingThreshold;
-            config.appender = this.appender;
+            config.asyncAppender = this.asyncAppender;
+            config.appenders = this.appenders;
             return config;
         }
     }
