@@ -73,6 +73,10 @@ public class LogbackConfig {
         return appenderName;
     }
 
+    public void setAppenderName(String appenderName) {
+        this.appenderName = appenderName;
+    }
+
     public String getLevel() {
         return level;
     }
@@ -129,7 +133,7 @@ public class LogbackConfig {
         return asyncAppender;
     }
 
-    public void setetAsyncAppender(Appender<ILoggingEvent> asyncAppender) {
+    public void setAsyncAppender(Appender<ILoggingEvent> asyncAppender) {
         this.asyncAppender = asyncAppender;
     }
 
