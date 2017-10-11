@@ -20,6 +20,9 @@
 
 package com.adeptj.runtime.tools;
 
+import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
+
 /**
  * Stores the OSGi web console password as a variable.
  *
@@ -36,10 +39,10 @@ public enum OSGiConsolePasswordVault {
     }
 
     public void setPassword(String pwd) {
-        this.password = (pwd == null || pwd.isEmpty()) ? null : pwd.toCharArray();
+        this.password = StringUtils.isEmpty(pwd) ? null : pwd.toCharArray();
     }
 
     public boolean isPasswordSet() {
-        return this.password != null;
+        return ArrayUtils.isNotEmpty(this.password);
     }
 }
