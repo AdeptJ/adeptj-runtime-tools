@@ -108,6 +108,7 @@ public enum LogbackManager {
         consoleAppender.setName(name);
         consoleAppender.setContext(this.loggerContext);
         consoleAppender.setEncoder(this.createLayoutEncoder(logPattern));
+        consoleAppender.setWithJansi(true);
         consoleAppender.start();
         return consoleAppender;
     }
