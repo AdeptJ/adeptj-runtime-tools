@@ -103,6 +103,7 @@ public enum LogbackManager {
         layoutEncoder.start();
         PatternLayout layout = (PatternLayout) layoutEncoder.getLayout();
         layout.getDefaultConverterMap().put("highlight", ExtHighlightingCompositeConverter.class.getName());
+        layout.getDefaultConverterMap().put("thread", ExtThreadConverter.class.getName());
         return layoutEncoder;
     }
 
