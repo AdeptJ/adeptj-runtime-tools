@@ -24,10 +24,10 @@
     <parent>
         <groupId>com.adeptj</groupId>
         <artifactId>adeptj-parent</artifactId>
-        <version>1.0.18.Final</version>
+        <version>1.0.19.Final</version>
     </parent>
     <artifactId>adeptj-runtime-tools</artifactId>
-    <version>1.0.5.Final</version>
+    <version>1.0.6-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>AdeptJ Runtime Tools</name>
     <description>AdeptJ Runtime Tools - Admin Dashboard etc.</description>

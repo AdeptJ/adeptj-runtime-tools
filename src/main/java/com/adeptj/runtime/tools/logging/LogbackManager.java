@@ -150,4 +150,8 @@ public enum LogbackManager {
         asyncAppender.addAppender(logbackConfig.getAsyncAppender());
         asyncAppender.start();
     }
+
+    public static LogbackManager getInstance() {
+        return INSTANCE;
+    }
 }
