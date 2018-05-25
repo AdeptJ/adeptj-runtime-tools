@@ -34,6 +34,10 @@ public enum OSGiConsolePasswordVault {
 
     private volatile char[] password;
 
+    public static OSGiConsolePasswordVault getInstance() {
+        return INSTANCE;
+    }
+
     public char[] getPassword() {
         return this.password;
     }
